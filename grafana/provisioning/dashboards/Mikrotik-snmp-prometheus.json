@@ -523,7 +523,7 @@
       },
       "gridPos": {
         "h": 2,
-        "w": 4,
+        "w": 2,
         "x": 4,
         "y": 2
       },
@@ -559,6 +559,75 @@
         }
       ],
       "title": "Status device",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "The number of errors detected on this device",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#299c46",
+                "value": null
+              },
+              {
+                "color": "dark-orange",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 2,
+        "x": 6,
+        "y": 2
+      },
+      "id": 1614,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.0.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "hrDeviceErrors{instance='$instance', hrDeviceIndex=\"1\"}",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Device Errors",
       "type": "stat"
     },
     {
@@ -635,6 +704,71 @@
       "fieldConfig": {
         "defaults": {
           "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "super-light-yellow",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 4,
+        "x": 12,
+        "y": 2
+      },
+      "id": 1248,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "name"
+      },
+      "pluginVersion": "9.0.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "mtxrBoardName{instance='$instance'}",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{mtxrBoardName}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Board Name",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
             "mode": "palette-classic"
           },
           "custom": {
@@ -684,8 +818,8 @@
       },
       "gridPos": {
         "h": 9,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 16,
         "y": 2
       },
       "id": 1262,
@@ -706,6 +840,20 @@
       "pluginVersion": "8.2.1",
       "repeatDirection": "h",
       "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "avg(hrProcessorLoad{instance='$instance'})",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "CPU load",
+          "range": true,
+          "refId": "F"
+        },
         {
           "datasource": {
             "type": "prometheus",
@@ -843,7 +991,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
-      "description": "The number of errors detected on this device",
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -856,10 +1004,6 @@
               {
                 "color": "#299c46",
                 "value": null
-              },
-              {
-                "color": "dark-orange",
-                "value": 1
               }
             ]
           }
@@ -872,7 +1016,74 @@
         "x": 4,
         "y": 4
       },
-      "id": 1614,
+      "id": 1650,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "name"
+      },
+      "pluginVersion": "9.0.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "mtxrLicVersion{instance='$instance'}",
+          "format": "time_series",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{mtxrLicVersion}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Package ver",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#299c46",
+                "value": null
+              }
+            ]
+          },
+          "unit": "MHz"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 2,
+        "x": 8,
+        "y": 4
+      },
+      "id": 1240,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -896,7 +1107,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "hrDeviceErrors{instance='$instance', hrDeviceIndex=\"1\"}",
+          "expr": "mtxrHlProcessorFrequency{instance='$instance'}",
           "hide": false,
           "instant": true,
           "interval": "",
@@ -904,7 +1115,72 @@
           "refId": "A"
         }
       ],
-      "title": "Device Errors",
+      "title": "CPU frequency",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#fff899",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 2,
+        "x": 10,
+        "y": 4
+      },
+      "id": 1311,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "name"
+      },
+      "pluginVersion": "9.0.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "mtxrSerialNumber{instance='$instance'}",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "{{mtxrSerialNumber}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Serial Number",
       "type": "stat"
     },
     {
@@ -934,7 +1210,7 @@
       "gridPos": {
         "h": 2,
         "w": 4,
-        "x": 8,
+        "x": 12,
         "y": 4
       },
       "id": 1241,
@@ -1213,6 +1489,85 @@
         }
       ],
       "title": "system disk load",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 1,
+          "mappings": [],
+          "max": 80,
+          "min": 1,
+          "noValue": "N/A",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "light-blue",
+                "value": null
+              },
+              {
+                "color": "#299c46",
+                "value": 20
+              },
+              {
+                "color": "dark-orange",
+                "value": 55
+              },
+              {
+                "color": "dark-red",
+                "value": 65
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 12,
+        "y": 6
+      },
+      "id": 1237,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": true,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "9.0.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "mtxrHlProcessorTemperature{instance='$instance'}/10 or mtxrHlTemperature{instance='$instance'}/10",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "CPU Temp",
       "type": "gauge"
     },
     {
@@ -1999,8 +2354,6 @@
                 "mode": "palette-classic"
               },
               "custom": {
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
@@ -2046,7 +2399,7 @@
             "h": 6,
             "w": 12,
             "x": 0,
-            "y": 40
+            "y": 7
           },
           "id": 1268,
           "links": [],
@@ -2062,8 +2415,7 @@
               "showLegend": true
             },
             "tooltip": {
-              "mode": "multi",
-              "sort": "none"
+              "mode": "multi"
             }
           },
           "pluginVersion": "8.2.1",
@@ -2137,8 +2489,6 @@
                 "mode": "palette-classic"
               },
               "custom": {
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
@@ -2186,9 +2536,9 @@
           },
           "gridPos": {
             "h": 6,
-            "w": 8,
+            "w": 12,
             "x": 0,
-            "y": 46
+            "y": 13
           },
           "id": 1282,
           "links": [],
@@ -2204,8 +2554,7 @@
               "showLegend": true
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "mode": "single"
             }
           },
           "pluginVersion": "8.2.1",
@@ -2374,7 +2723,7 @@
             "h": 6,
             "w": 12,
             "x": 0,
-            "y": 41
+            "y": 37
           },
           "id": 1510,
           "links": [],
@@ -2512,9 +2861,9 @@
           },
           "gridPos": {
             "h": 6,
-            "w": 12,
-            "x": 12,
-            "y": 41
+            "w": 6,
+            "x": 0,
+            "y": 43
           },
           "id": 1549,
           "links": [],
@@ -2681,7 +3030,7 @@
             "h": 11,
             "w": 6,
             "x": 0,
-            "y": 42
+            "y": 80
           },
           "id": 1339,
           "options": {
@@ -2969,7 +3318,7 @@
             "h": 7,
             "w": 6,
             "x": 0,
-            "y": 43
+            "y": 114
           },
           "id": 1286,
           "options": {
@@ -3100,8 +3449,8 @@
       {
         "current": {
           "selected": false,
-          "text": "192.168.76.1",
-          "value": "192.168.76.1"
+          "text": "192.168.99.1",
+          "value": "192.168.99.1"
         },
         "datasource": {
           "type": "prometheus",
@@ -3129,8 +3478,8 @@
       {
         "current": {
           "selected": false,
-          "text": "6",
-          "value": "6"
+          "text": "1",
+          "value": "1"
         },
         "datasource": {
           "type": "prometheus",
@@ -3188,6 +3537,7 @@
       },
       {
         "current": {
+          "isNone": true,
           "selected": false,
           "text": "None",
           "value": ""
@@ -3373,6 +3723,6 @@
   "timezone": "",
   "title": "Mikrotik monitoring",
   "uid": "nR3NRDGaz",
-  "version": 13,
+  "version": 3,
   "weekStart": ""
 }
